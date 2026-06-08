@@ -1,125 +1,72 @@
-# 🛍️ ProStore - ABA PayWay Integration
-
 <div align="center">
-  <img src="https://www.payway.com.kh/payway-logo.svg" alt="ABA Payway Logo" width="400"/>
+
+<img src="https://www.payway.com.kh/payway-logo.svg" alt="ABA PayWay" width="320" />
+
+<br />
+
+# ProStore × ABA PayWay
+
+**Production-ready Next.js e-commerce template with ABA PayWay payment integration**
+
+[![Next.js](https://img.shields.io/badge/Next.js-14-000000?style=flat-square&logo=nextdotjs)](https://nextjs.org)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=flat-square&logo=typescript)](https://www.typescriptlang.org)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-3-06B6D4?style=flat-square&logo=tailwindcss)](https://tailwindcss.com)
+[![License](https://img.shields.io/badge/License-Proprietary-red?style=flat-square)](./LICENSE)
+
+[Overview](#overview) · [Quick Start](#quick-start) · [Integration Guide](#integration-guide) · [Project Structure](#project-structure) · [Troubleshooting](#troubleshooting)
+
 </div>
 
-> 💳 **Next.js E-commerce + ABA PayWay Payment Gateway**  
-> A production-ready integration template for accepting payments via ABA PayWay in your Next.js store.
+---
+
+## Overview
+
+**ProStore** is a modular Next.js template designed to help Cambodian e-commerce developers integrate **ABA PayWay** payment processing quickly and securely. Built with TypeScript, Tailwind CSS, and the Next.js Pages Router for maximum compatibility and ease of deployment.
+
+| | |
+|---|---|
+| ✅ Sandbox & production environments | ✅ Webhook-ready API routes |
+| ✅ Modular payment utilities | ✅ Type-safe with TypeScript |
 
 ---
 
-## 📋 Table of Contents
-- [Overview](#-overview)
-- [Features](#-features)
-- [Tech Stack](#-tech-stack)
-- [🔐 Environment Variables](#-environment-variables)
-- [Installation](#-installation)
-- [Development](#-development)
-- [PayWay Integration Guide](#-payway-integration-guide)
-- [Project Structure](#-project-structure)
-- [Security Checklist](#-security-checklist)
-- [Troubleshooting](#-troubleshooting)
-- [License](#-license)
+## Tech Stack
 
----
-
-## 🌟 Overview
-**ProStore_PayWay-Integration** is a modular Next.js template designed to help Cambodian e-commerce developers quickly integrate **ABA PayWay** payment processing. Built with TypeScript, Tailwind CSS, and the Next.js Pages Router for maximum compatibility.
-
-✅ Supports sandbox & production environments  
-✅ Modular payment utilities (`lib/payway.js`)  
-✅ Webhook-ready API routes  
-✅ Type-safe with TypeScript  
-
----
-
-## ✨ Features
-- 🔐 Secure checkout flow with ABA PayWay redirect
-- 🔄 Webhook handler for payment status updates (`/api/payment/notify`)
-- 🎨 Responsive UI components (`components/PaymentModal.tsx`)
-- 🗂️ Clean architecture: `lib/` for utilities, `pages/api/` for endpoints
-- 🌐 Environment-based config via `.env`
-- 📦 Easy deployment to Vercel, Netlify, or Node.js server
-
----
-
-## 🛠️ Tech Stack
 | Layer | Technology |
-|-------|-----------|
+|---|---|
 | Framework | Next.js 14 (Pages Router) |
-| Language | TypeScript, JavaScript |
+| Language | TypeScript / JavaScript |
 | Styling | Tailwind CSS + CSS Modules |
 | Payment | ABA PayWay API (Sandbox & Production) |
-| Tooling | ESLint, Prettier, TypeScript |
+| Tooling | ESLint · Prettier · TypeScript |
 
 ---
 
-## 🔐 Environment Variables
-
-Create a `.env` file in the root (based on `.env.example`):
-
-```env
-# 🏦 ABA PayWay Configuration
-PAYWAY_API_URL=https://checkout-sandbox.payway.com.kh/api/v1
-# For production: https://checkout.payway.com.kh/api/v1
-
-PAYWAY_MERCHANT_ID=YOUR_MERCHANT_ID_HERE
-# Example: ProStore-PayWay-SandBox
-
-PAYWAY_API_KEY=your_secret_api_key_here
-# ⚠️ Never commit this to version control!
-
-# 🔗 Application URLs
-NEXT_PUBLIC_BASE_URL=http://localhost:3000
-PAYWAY_RETURN_URL=http://localhost:3000/payment/return
-PAYWAY_NOTIFY_URL=http://localhost:3000/api/payment/notify
-
-# 🔑 Security
-NEXTAUTH_SECRET=generate_with_openssl_rand_base64_32
-NODE_ENV=development
-```
-
-### 🔑 How to Get PayWay Credentials
-1. Visit [ABA PayWay Sandbox](https://checkout-sandbox.payway.com.kh/) (or production portal)
-2. Log in with your merchant account
-3. Go to **Settings → API Credentials**
-4. Copy:
-   - `Merchant ID`
-   - `API Key` (keep secret!)
-   - Confirm `API URL` matches your environment
-
----
-
-## 🚀 Installation
+## Quick Start
 
 ```bash
-# 1. Clone the repo
+# 1. Clone the repository
 git clone https://github.com/SereyodamChek/ProStore_PayWay-Intergration.git
 cd ProStore_PayWay-Intergration
 
 # 2. Install dependencies
 npm install
-# or
-yarn install
 
 # 3. Configure environment
 cp .env.example .env
-# → Edit .env with your PayWay credentials
+# Edit .env with your PayWay credentials
 
-# 4. Start development server
+# 4. Start the dev server
 npm run dev
 ```
 
-Visit [http://localhost:3000](http://localhost:3000) 🎉
+Open [http://localhost:3000](http://localhost:3000) to see the app.
 
----
-
-## 💻 Development Scripts
+### Development Scripts
 
 | Command | Description |
-|---------|-------------|
-| `npm run dev` | Start dev server (http://localhost:3000) |
+|---|---|
+| `npm run dev` | Start development server |
 | `npm run build` | Build for production |
 | `npm run start` | Start production server |
 | `npm run lint` | Run ESLint + TypeScript checks |
@@ -127,38 +74,69 @@ Visit [http://localhost:3000](http://localhost:3000) 🎉
 
 ---
 
-## 💳 PayWay Integration Guide
+## Environment Variables
 
-### 🔁 Payment Flow
-```mermaid
-sequenceDiagram
-    participant User
-    participant ProStore
-    participant PayWay
-    participant Webhook
+Create a `.env` file in the project root (use `.env.example` as a template):
 
-    User->>ProStore: Checkout & Submit Order
-    ProStore->>PayWay: POST /payment/create (with API key)
-    PayWay-->>ProStore: Return payment_url
-    ProStore->>User: Redirect to payment_url
-    User->>PayWay: Complete payment (card/KHQR)
-    PayWay->>Webhook: POST notification to notify_url
-    Webhook->>ProStore: Update order status
-    PayWay->>User: Redirect to return_url
-    User->>ProStore: See payment result page
+```env
+# ABA PayWay
+PAYWAY_API_URL=https://checkout-sandbox.payway.com.kh/api/v1
+# Production: https://checkout.payway.com.kh/api/v1
+
+PAYWAY_MERCHANT_ID=YOUR_MERCHANT_ID_HERE
+PAYWAY_API_KEY=your_secret_api_key_here   # ⚠️ Never commit this
+
+# Application URLs
+NEXT_PUBLIC_BASE_URL=http://localhost:3000
+PAYWAY_RETURN_URL=http://localhost:3000/payment/return
+PAYWAY_NOTIFY_URL=http://localhost:3000/api/payment/notify
+
+# Security
+NEXTAUTH_SECRET=generate_with_openssl_rand_base64_32
+NODE_ENV=development
 ```
 
-### 📦 Key Files
+### Obtaining PayWay Credentials
+
+1. Log in to the [ABA PayWay Sandbox Portal](https://checkout-sandbox.payway.com.kh/) (or production portal)
+2. Navigate to **Settings → API Credentials**
+3. Copy your `Merchant ID` and `API Key`
+4. Confirm the `API URL` matches your target environment
+
+---
+
+## Integration Guide
+
+### Payment Flow
+
+```
+User             ProStore            PayWay            Webhook
+ │                  │                   │                  │
+ │── Checkout ──▶   │                   │                  │
+ │                  │── POST /create ──▶│                  │
+ │                  │◀── payment_url ───│                  │
+ │◀── Redirect ─────│                   │                  │
+ │                  │                   │                  │
+ │──── Complete payment ──────────────▶ │                  │
+ │                  │                   │── POST notify ──▶│
+ │                  │                   │                  │── Update order
+ │◀──────────────── Redirect to return_url ────────────────│
+```
+
+### Key Files
+
 | File | Purpose |
-|------|---------|
-| `lib/payway.js` | PayWay API utilities (create payment, check status) |
-| `pages/api/payment/create.js` | Endpoint to initiate PayWay request |
+|---|---|
+| `lib/payway.js` | PayWay API utilities — create payment, check status |
+| `pages/api/payment/create.js` | Endpoint to initiate a PayWay payment request |
 | `pages/api/payment/notify.js` | Webhook handler for PayWay callbacks |
 | `components/PaymentModal.tsx` | Reusable payment UI component |
 | `pages/payment/return.js` | Post-payment result page |
 
-### 🧪 Example: Create Payment (`lib/payway.js`)
+### Create Payment — Example
+
 ```javascript
+// lib/payway.js
 export async function createPayment({ orderId, amount, currency = 'USD' }) {
   const res = await fetch(`${process.env.PAYWAY_API_URL}/payment/create`, {
     method: 'POST',
@@ -168,98 +146,100 @@ export async function createPayment({ orderId, amount, currency = 'USD' }) {
     },
     body: JSON.stringify({
       merchant_id: process.env.PAYWAY_MERCHANT_ID,
-      order_id: orderId,
-      amount: parseFloat(amount).toFixed(2),
+      order_id:    orderId,
+      amount:      parseFloat(amount).toFixed(2),
       currency,
-      return_url: process.env.PAYWAY_RETURN_URL,
-      notify_url: process.env.PAYWAY_NOTIFY_URL,
-      // Optional: customer info, items, etc.
+      return_url:  process.env.PAYWAY_RETURN_URL,
+      notify_url:  process.env.PAYWAY_NOTIFY_URL,
     }),
   });
 
   if (!res.ok) throw new Error('PayWay API error');
-  return await res.json();
+  return res.json();
 }
 ```
 
 ---
 
-## 📁 Project Structure
+## Project Structure
+
 ```
 ProStore_PayWay-Intergration/
 ├── components/
-│   └── PaymentModal.tsx      # Reusable payment UI
+│   └── PaymentModal.tsx            # Reusable payment UI
 ├── lib/
-│   └── payway.js             # PayWay API helpers
+│   └── payway.js                   # PayWay API helpers
 ├── pages/
 │   ├── api/
 │   │   └── payment/
-│   │       ├── create.js     # Initiate payment
-│   │       └── notify.js     # Webhook endpoint
+│   │       ├── create.js           # Initiate payment
+│   │       └── notify.js           # Webhook handler
 │   ├── payment/
-│   │   └── return.js         # Payment result page
-│   ├── _app.js               # App entry point
-│   └── index.js              # Home/checkout page
+│   │   └── return.js               # Payment result page
+│   ├── _app.js                     # App entry point
+│   └── index.js                    # Home / checkout
 ├── styles/
-│   ├── globals.css           # Global Tailwind styles
+│   ├── globals.css
 │   └── PaymentModal.module.css
-├── .env.example              # Env var template
-├── next.config.js            # Next.js config
-├── package.json              # Dependencies & scripts
-├── tsconfig.json             # TypeScript config
-└── README.md                 # This file
+├── .env.example
+├── next.config.js
+├── package.json
+├── tsconfig.json
+└── README.md
 ```
 
 ---
 
-## 🔒 Security Checklist
-- ✅ **Never** expose `PAYWAY_API_KEY` in client-side code
-- ✅ Validate webhook requests (verify signature if provided by PayWay)
-- ✅ Use HTTPS in production for all endpoints
-- ✅ Sanitize & validate all user inputs server-side
-- ✅ Log payment events (exclude sensitive data)
-- ✅ Rotate API keys periodically via PayWay portal
-- ✅ Restrict `notify_url` to accept only PayWay IPs (if documented)
+## Security Checklist
+
+- **Never** expose `PAYWAY_API_KEY` in client-side code
+- Validate all webhook requests (verify signatures if provided by PayWay)
+- Use HTTPS in production for every endpoint
+- Sanitize and validate all user inputs server-side
+- Log payment events — exclude sensitive data
+- Rotate API keys periodically via the PayWay portal
+- Restrict `notify_url` to PayWay IP ranges (if documented)
 
 ---
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
 | Error | Likely Cause | Fix |
-|-------|-------------|-----|
-| `401 Unauthorized` | Invalid `PAYWAY_API_KEY` or `MERCHANT_ID` | Double-check credentials in PayWay portal |
-| Webhook not triggering | `notify_url` not publicly accessible | Use ngrok for local testing: `ngrok http 3000` |
-| Redirect loop after payment | `return_url` mismatch | Ensure URL exactly matches PayWay merchant settings |
-| TypeScript errors | Missing types or config | Run `npm run type-check` and review `tsconfig.json` |
-| CORS issues | API called from wrong origin | Configure allowed origins in Next.js config or middleware |
+|---|---|---|
+| `401 Unauthorized` | Invalid API key or Merchant ID | Verify credentials in the PayWay portal |
+| Webhook not firing | `notify_url` not publicly accessible | Use ngrok for local testing (see below) |
+| Redirect loop after payment | `return_url` mismatch | Ensure URL matches PayWay merchant settings exactly |
+| TypeScript errors | Missing types or misconfigured tsconfig | Run `npm run type-check` and review `tsconfig.json` |
+| CORS issues | API called from wrong origin | Configure allowed origins in Next.js middleware |
 
-### 🔍 Test Webhooks Locally
+### Testing Webhooks Locally
+
 ```bash
-# Install ngrok
-npm install -g ngrok
+# Expose your local server
+npx ngrok http 3000
 
-# Expose localhost
-ngrok http 3000
-
-# Update .env:
-PAYWAY_NOTIFY_URL=https://your-ngrok-id.ngrok.io/api/payment/notify
+# Update your .env
+PAYWAY_NOTIFY_URL=https://<your-ngrok-id>.ngrok.io/api/payment/notify
 ```
 
 ---
 
-## 📄 License
+## Resources
+
+| Resource | Link |
+|---|---|
+| Sandbox Portal | [checkout-sandbox.payway.com.kh](https://checkout-sandbox.payway.com.kh/) |
+| Production Portal | [checkout.payway.com.kh](https://checkout.payway.com.kh/) |
+| Developer Docs | [developer.payway.com.kh](https://developer.payway.com.kh/) |
+| Support | [support@payway.com.kh](mailto:support@payway.com.kh) |
+
+---
+
+<div align="center">
+
 © 2026 **ProStore**. All rights reserved.  
-This code is provided for educational and integration purposes. Commercial use requires proper licensing and compliance with ABA PayWay terms.
+Provided for educational and integration purposes. Commercial use requires compliance with ABA PayWay terms of service.
 
----
+*Empowering Cambodian commerce — one seamless payment at a time.* 🇰🇭
 
-> 🇰🇭 **ABA PayWay Resources**  
-> • [Sandbox Portal](https://checkout-sandbox.payway.com.kh/)  
-> • [Production Portal](https://checkout.payway.com.kh/)  
-> • [Developer Docs](https://developer.payway.com.kh/)  
-> • [Support](mailto:support@payway.com.kh)
-
-*Empowering Cambodian commerce — one seamless payment at a time.* 💙
-```
-
-I've added the PayWay logo at the top, centered with a width of 200 pixels. The logo will display properly when the README is viewed on GitHub or any markdown viewer that supports remote images.
+</div>
