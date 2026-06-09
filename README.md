@@ -1,10 +1,10 @@
 <div align="center">
 
-<img src="https://www.payway.com.kh/payway-logo.svg" alt="ABA PayWay" width="320" />
+<img src="https://www.payway.com.kh/payway-logo.svg" alt="ABA PayWay" width="300" />
 
 <br />
+<br><img src="https://camo.githubusercontent.com/b4463a41d88367e1cb4a15591d611b01f64d41014d19ec5f15cb078e489af0dd/68747470733a2f2f65636f6c657061756c64756272756c652e6f72672f77702d636f6e74656e742f75706c6f6164732f323032342f30352f4142415f4c6f676f2e706e67" width="150" height="60" alt="ABA Logo" />
 
-# ProStore × ABA PayWay
 
 **Production-ready Next.js e-commerce template with ABA PayWay payment integration**
 
