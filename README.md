@@ -13,7 +13,6 @@
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-3-06B6D4?style=flat-square&logo=tailwindcss)](https://tailwindcss.com)
 [![License](https://img.shields.io/badge/License-Proprietary-red?style=flat-square)](./LICENSE)
 
-[Overview](#overview) · [Quick Start](#quick-start) · [Integration Guide](#integration-guide) · [Project Structure](#project-structure) · [Troubleshooting](#troubleshooting)
 
 </div>
 
